@@ -8,7 +8,7 @@ const x = function()
     const w = "function up"
     console.log(w.toUpperCase());
 
-    const s= '     ' ;
+    const s= '    red marble ' ;
     console.log(s.trim());
 }
 
