@@ -1,5 +1,7 @@
 const express = require('express');
 const lodash= require('lodash');
+
+
 const externalModule1 =require('../logger/logger')
 const externalModule2 =require('../util/helper')
 const externalModule3 =require('../validater/formatter')
@@ -33,5 +35,60 @@ router.get('/hello', function(req, res) {
   res.send('Some more solutions!')
 
 });
+
+router.get('/movies', function (req, res){
+  let movies = [
+    "Rang de Basanti",
+    "The Shining",
+    "Lord of the rings",
+    "Batman begins",
+];
+
+res.send(movies);
+});
+
+//Invalid index
+router.get('/movies/:indexNumber', function (req, res){
+  let movies = [
+    "Rang de Basanti",
+    "The Shining",
+    "Lord of the rings",
+    "Batman begins"
+];
+let index = req.params.indexNumber;
+if (!movies[index]){
+  res.send("please enter a valid index number");
+}
+res.send(movies[index]);
+});
+
+
+//Array of movie objects
+router.get('/films', function (req, res){
+  let films =[
+    {id:1, name: "The Shining"},
+    {id:2, name: "Incendies" },
+    {id:3, name: "Rang de Basanti"},
+    {id:4, name:"FindingNemo"},
+  ];
+  res.send(films);
+});
+
+
+//get films by Id
+router.get('/films/:filmId', function (req, res){
+  let films = [
+    {id:1, name: "The Shining"},
+    {id:2, name: "Incendies" },
+    {id:3, name: "Rang de Basanti"},
+    {id:4, name:"FindingNemo"},
+];
+const input = req.params.filmId;
+const result = films.find((ele) => ele.id ==input);
+if (result === undefined){
+  res.send('No movie exist with this id');
+}
+res.send(result);
+});
+
 module.exports = router;
-// adding this comment for no reason
