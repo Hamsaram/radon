@@ -8,18 +8,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://Hamsaram:9113582061h@cluster0.iou3w.mongodb.net/Hamsaram7?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
-app.use (
-    function (req, res, next) {
-        console.log ("inside GLOBAL MW");
-        next();
-  }
-  );
+const assignmentMW = function (req, res, next) {
+
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+     let dateTime = date+' '+time;
+     console.log(dateTime)
+     let ip= req.ip
+     console.log(ip)
+     let url= req.originalUrl
+     console.log(url)
+     
+     next()
+}
+
+  app.use (assignmentMW)
+
 
 app.use('/', route);
 
