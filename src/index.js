@@ -17,14 +17,13 @@ mongoose.connect("mongodb+srv://Hamsaram:9113582061h@cluster0.iou3w.mongodb.net/
 const assignmentMW = function (req, res, next) {
 
     let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
      let dateTime = date+' '+time;
-     console.log(dateTime)
      let ip= req.ip
-     console.log(ip)
      let url= req.originalUrl
-     console.log(url)
+     
+     console.log(`${dateTime} ${ip} ${url}`)
      
      next()
 }
