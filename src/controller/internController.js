@@ -46,7 +46,7 @@ const createIntern = async function(req, res){
         
         //mobile number validation
         if(mobile){
-            mobile = mobile.trim()
+            mobile = mobile
             if(!isValidMobile(mobile))
                 return res
                 .status(400)
